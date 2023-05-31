@@ -4,7 +4,6 @@ pipeline {
     go '1.19'
   }
   stages {
-
     stage('Checkout SCM') {
       steps {
         checkout([
@@ -38,13 +37,12 @@ pipeline {
         [ "$response" = "200" ] && exit 0 || exit 1'''
       }
     }
-        stage('Deploy') {
+    stage('Deploy') {
       steps {
         sshagent(credentials: ['creds_srv']) {
           sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.6.40.106 "cd web_app && git pull && go build ./web_app.go && ./web_app &"'
         }
       }
-     }
     }
   }
 }
