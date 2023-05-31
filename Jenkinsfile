@@ -38,13 +38,13 @@ pipeline {
         [ "$response" = "200" ] && exit 0 || exit 1'''
       }
     }
-    stage('Deploy') {
+        stage('Deploy') {
       steps {
-        echo 'Deploying application...'
-        sh 'date'
-        sh 'id'
-        sh 'sleep 1'
+        sshagent(credentials: ['creds_srv']) {
+          sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.6.40.106 "cd web_app && git pull && go build ./web_app.go && ./web_app &"'
+        }
       }
+     }
     }
   }
 }
