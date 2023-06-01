@@ -28,7 +28,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        echo 'Testing application...'
+        echo 'Testing application....'
         sh 'pwd'
         sh 'ls -la'
         sh './web_app &'
