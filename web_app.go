@@ -7,7 +7,7 @@ import (
 
 func main() {
   http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprint(w, "Hello from Go App - Changed")
+    fmt.Fprint(w, "Hello from Go App - UnChanged")
   })
   err := http.ListenAndServe("0.0.0.0:1026", nil)
   if err != nil {
